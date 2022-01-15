@@ -21,7 +21,7 @@ SELECT name, area FROM world
   WHERE area BETWEEN 200000 AND 250000
 ```
 
-##SELECT from world
+## SELECT from world
 
 1.
 ```sql
@@ -93,7 +93,7 @@ WHERE name LIKE '%o%a%i%u%e%'
   AND name NOT LIKE '% %'
 ```
 
-##SELECT from nobel
+## SELECT from nobel
 ```
 1.
 ```sql
@@ -159,7 +159,7 @@ FROM nobel
 WHERE (yr < 1910 AND subject = 'Medicine') OR (yr >= 2004 AND subject = 'Literature')
 ```
 
-##SELECT in SELECT
+## SELECT in SELECT
 
 1.
 ```sql

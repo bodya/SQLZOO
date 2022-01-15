@@ -1,0 +1,49 @@
+SELECT basics
+
+SELECT from world
+
+SELECT from nobel
+
+SELECT in SELECT
+1.
+SELECT name FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Russia')
+2. 
+SELECT name FROM world
+  WHERE gdp/population >
+     (SELECT gdp/population FROM world
+      WHERE name='United Kingdom') and continent = 'Europe'
+3.
+select name, continent
+from world
+where continent in (select continent from world where name in ('Argentina', 'Australia'))
+order by name
+4.
+select name, population
+from world
+where population > (select population from world where name = 'Canada') and population < (select population from world where name = 'Poland')
+5.
+select name, 
+concat(round(100*population/(select population from world where name = 'Germany')),'%')
+from world
+where continent = 'Europe'
+6.
+select name
+from world
+where gdp > ALL (select gdp from world where gdp is not null and continent = 'Europe')
+7.
+SELECT continent, name, area FROM world x
+  WHERE area >= ALL
+    (SELECT area FROM world y
+        WHERE y.continent=x.continent)
+8.
+select s.continent, s.name
+from world s
+where s.name <=ALL (select s2.name from world s2 where s.continent=s2.continent)
+9.
+select s.name, s.continent, s.population
+from world s
+where 25000000 >= ALL( select s2.population from world s2 where s.continent=s2.continent and s2.population is not null)
+10.

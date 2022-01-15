@@ -94,7 +94,7 @@ WHERE name LIKE '%o%a%i%u%e%'
 ```
 
 ## SELECT from nobel
-```
+
 1.
 ```sql
 SELECT yr, subject, winner

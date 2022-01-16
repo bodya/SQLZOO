@@ -229,7 +229,8 @@ from world s
 where s.population >= ALL( select s2.population*3 from world s2 where s.continent=s2.continent and s2.population is not null and s.name != s2.name)
 ```
 
-## SUM and COUNT
+## SELECT in SELECT
+
 1.
 ```sql
 SELECT yr, subject, winner
@@ -294,7 +295,7 @@ FROM nobel
 WHERE (yr < 1910 AND subject = 'Medicine') OR (yr >= 2004 AND subject = 'Literature')
 ```
 
-## SELECT in SELECT
+## SUM and COUNT
 
 1.
 ```sql

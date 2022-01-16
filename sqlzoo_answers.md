@@ -4,6 +4,7 @@
 2. [SELECT from WORLD](#select-from-world)
 3. [SELECT from NOBEL](#select-from-nobel)
 4. [SELECT in SELECT](#select-in-select)
+5. [SUM and COUNT](#sum-and-count)
 
 ## SELECT basics
 1.
@@ -226,4 +227,122 @@ where 25000000 >= ALL( select s2.population from world s2 where s.continent=s2.c
 select s.name, s.continent
 from world s
 where s.population >= ALL( select s2.population*3 from world s2 where s.continent=s2.continent and s2.population is not null and s.name != s2.name)
+```
+
+## SUM and COUNT
+1.
+```sql
+SELECT yr, subject, winner
+  FROM nobel
+ WHERE yr = 1950
+```
+2.
+```sql
+SELECT winner
+  FROM nobel
+ WHERE yr = 1962
+   AND subject = 'Literature'
+```
+3.
+```sql
+SELECT yr, subject
+FROM nobel
+WHERE winner = 'Albert Einstein'
+```
+4.
+```sql
+SELECT winner
+FROM nobel
+WHERE subject = 'Peace' and yr >= 2000  
+```
+5.
+```sql
+SELECT yr, subject, winner
+FROM nobel
+WHERE subject = 'Literature ' and yr BETWEEN 1980 AND 1989
+```
+6.
+```sql
+SELECT yr, subject, winner FROM nobel
+ WHERE winner IN ('Theodore Roosevelt',
+                  'Woodrow Wilson',
+                  'Jimmy Carter',
+                   'Barack Obama')
+```
+7.
+```sql
+SELECT winner
+FROM nobel
+WHERE winner LIKE 'John %'
+```
+8.
+```sql
+SELECT yr, subject, winner
+FROM nobel
+WHERE (subject = 'Physics' AND yr = 1980) OR (subject = 'Chemistry' AND yr = 1984)
+```
+9.
+```sql
+SELECT yr, subject, winner
+FROM nobel
+WHERE yr = 1980 AND subject NOT IN ('Chemistry', 'Medicine')
+```
+10.
+```sql
+SELECT yr, subject, winner
+FROM nobel
+WHERE (yr < 1910 AND subject = 'Medicine') OR (yr >= 2004 AND subject = 'Literature')
+```
+
+## SELECT in SELECT
+
+1.
+```sql
+SELECT SUM(population)
+FROM world
+```
+2. 
+```sql
+select distinct continent
+from world
+```
+3.
+```sql
+select sum(gdp)
+from world
+where continent= 'Africa'
+```
+4.
+```sql
+select
+count(distinct name)
+from world
+where area > 1000000
+```
+5.
+```sql
+select 
+sum(population)
+from world
+where name in ('Estonia', 'Latvia', 'Lithuania')
+```
+6.
+```sql
+select continent, count(name)
+from world
+group by continent
+```
+7.
+```sql
+select continent, count(name)
+from world
+where population > 10000000
+group by continent
+```
+8.
+```sql
+select continent, count(name)
+from world
+where population > 10000000
+group by continent
 ```

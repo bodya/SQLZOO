@@ -222,3 +222,8 @@ from world s
 where 25000000 >= ALL( select s2.population from world s2 where s.continent=s2.continent and s2.population is not null)
 ```
 10.
+```sql
+select s.name, s.continent
+from world s
+where s.population >= ALL( select s2.population*3 from world s2 where s.continent=s2.continent and s2.population is not null and s.name != s2.name)
+```
